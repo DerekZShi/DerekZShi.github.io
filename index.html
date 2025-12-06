@@ -14,6 +14,7 @@
     <p>
         This is my first solution to LeetCode's two-sum aka Problem 1. This is n^2 time I think, because it loops through the array twice.
         I decided to do LeetCode in Javascript, as I found it is the most common programming language. 
+        <section><pre><code>
         /**
         * @param {number[]} nums
         * @param {number} target
@@ -33,18 +34,14 @@
                 }
             }
         };
+        </code></pre></section>
         This solution takes 32 ms, so top 62%, and top 15% space complexity. I could take a screenshot here, but it seems unnecessary.
         For Hint 2, it makes me think: we can sort the array, so that we can search less of the array, but seems like it won't save much time...
         For example, if we sort and then get to a number that's larger, we could break...
 
         I'm not familiar with maps, so I am taking a look here...
         Surely, we'll have to create the map, as it doesn't exist quite yet...
-
-        /**
-        * @param {number[]} nums
-        * @param {number} target
-        * @return {number[]}
-        */
+        <section><pre><code>
         var twoSum = function(nums, target) {
             const map = new Map();
             for (let i = 0; i <nums.length; i++)
@@ -62,15 +59,12 @@
                 }
             }
         };
+        </code></pre></section>
         This works, but is not very fast... Beats 70%, but bottom 6% space complexity
         The last step would be to do it one-pass, but I feel as though it's unnecesary
         Why does this work? Wouldn't it fail on duplicate values, because it would set 3,1, set 3,2, which would override the prior?
         It does, but it's fine, because you search through the array!
-        /**
-        * @param {number[]} nums
-        * @param {number} target
-        * @return {number[]}
-        */
+        <section><pre><code>
         var twoSum = function(nums, target) {
             const map = new Map();
                 for (let i = 0; i <nums.length; i++)
@@ -84,6 +78,7 @@
                     console.log(map.size)
                 }
         };
+        </code></pre></section>
         The solution is to check first for if there is a key-value before adding the new one. So that if there is a duplicate value,
         the first thing that will happen is that it will return the current index and the previous index and then just stop.
     </p>
