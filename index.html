@@ -7,8 +7,85 @@
     </title>
 </head>
 <body>
-    <h1>This is a header</h1>
+    <h1>Derek Z Shi</h1>
     <p>Hello, welcome to my website</p>
     <p>I will put everything here, for fun, and for documentation. I take a lots of notes on random things</p>
+    <p>Feel free to contact me at derek.z.shi@gmail.com</p>
+    <p>
+        This is my first solution to LeetCode's two-sum aka Problem 1. This is n^2 time I think, because it loops through the array twice.
+        I decided to do LeetCode in Javascript, as I found it is the most common programming language. 
+        /**
+        * @param {number[]} nums
+        * @param {number} target
+        * @return {number[]}
+        */
+        var twoSum = function(nums, target) {
+            for (let step = 0; step < nums.length; step++)
+            {
+                let otherPair = target - nums[step]
+                /*console.log("The otherPair is " + otherPair)*/
+                for (let step2 = step+1; step2 < nums.length; step2++)
+                {
+                    if(nums[step2] == otherPair)
+                    {
+                        return [step, step2]
+                    }
+                }
+            }
+        };
+        This solution takes 32 ms, so top 62%, and top 15% space complexity. I could take a screenshot here, but it seems unnecessary.
+        For Hint 2, it makes me think: we can sort the array, so that we can search less of the array, but seems like it won't save much time...
+        For example, if we sort and then get to a number that's larger, we could break...
+
+        I'm not familiar with maps, so I am taking a look here...
+        Surely, we'll have to create the map, as it doesn't exist quite yet...
+
+        /**
+        * @param {number[]} nums
+        * @param {number} target
+        * @return {number[]}
+        */
+        var twoSum = function(nums, target) {
+            const map = new Map();
+            for (let i = 0; i <nums.length; i++)
+            {
+                map.set(nums[i], i)
+            }
+            for (let i2 = 0; i2 < nums.length; i2++)
+            {
+                pair = target - nums[i2]
+                console.log(nums[i2])
+                console.log(map.get(pair))
+                if (nums[i2] + nums[map.get(pair)] == target && i2 != map.get(pair))
+                {
+                    return [i2, map.get(pair)]
+                }
+            }
+        };
+        This works, but is not very fast... Beats 70%, but bottom 6% space complexity
+        The last step would be to do it one-pass, but I feel as though it's unnecesary
+        Why does this work? Wouldn't it fail on duplicate values, because it would set 3,1, set 3,2, which would override the prior?
+        It does, but it's fine, because you search through the array!
+        /**
+        * @param {number[]} nums
+        * @param {number} target
+        * @return {number[]}
+        */
+        var twoSum = function(nums, target) {
+            const map = new Map();
+                for (let i = 0; i <nums.length; i++)
+                {
+                    pair = target - nums[i]
+                    if (nums[i] + nums[map.get(pair)] == target && i != map.get(pair))
+                    {
+                        return [i, map.get(pair)]
+                    }
+                    map.set(nums[i], i)
+                    console.log(map.size)
+                }
+        };
+        The solution is to check first for if there is a key-value before adding the new one. So that if there is a duplicate value,
+        the first thing that will happen is that it will return the current index and the previous index and then just stop.
+    </p>
 </body>
 </html>
