@@ -21,11 +21,11 @@
         * @return {number[]}
         */
         var twoSum = function(nums, target) {
-            for (let step = 0; step < nums.length; step++)
+            for (let step = 0; step &lt; nums.length; step++)
             {
                 let otherPair = target - nums[step]
                 /*console.log("The otherPair is " + otherPair)*/
-                for (let step2 = step+1; step2 < nums.length; step2++)
+                for (let step2 = step+1; step2 &lt; nums.length; step2++)
                 {
                     if(nums[step2] == otherPair)
                     {
@@ -35,6 +35,7 @@
             }
         };
         </code></pre></section>
+
         This solution takes 32 ms, so top 62%, and top 15% space complexity. I could take a screenshot here, but it seems unnecessary.
         For Hint 2, it makes me think: we can sort the array, so that we can search less of the array, but seems like it won't save much time...
         For example, if we sort and then get to a number that's larger, we could break...
@@ -44,11 +45,11 @@
         <section><pre><code>
         var twoSum = function(nums, target) {
             const map = new Map();
-            for (let i = 0; i <nums.length; i++)
+            for (let i = 0; i &lt;nums.length; i++)
             {
                 map.set(nums[i], i)
             }
-            for (let i2 = 0; i2 < nums.length; i2++)
+            for (let i2 = 0; i2 &lt; nums.length; i2++)
             {
                 pair = target - nums[i2]
                 console.log(nums[i2])
@@ -67,7 +68,7 @@
         <section><pre><code>
         var twoSum = function(nums, target) {
             const map = new Map();
-                for (let i = 0; i <nums.length; i++)
+                for (let i = 0; i &lt;nums.length; i++)
                 {
                     pair = target - nums[i]
                     if (nums[i] + nums[map.get(pair)] == target && i != map.get(pair))
