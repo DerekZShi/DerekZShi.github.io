@@ -162,6 +162,115 @@
         </code></pre></section>
         This was my first idea. It has a lot of problems. I think a better idea would be to implement a stack or queue and popping things out
         as I see things.
+        <section><pre><code>
+        /**
+        * @param {string} s
+        * @return {boolean}
+        */
+        var isValid = function(s) {
+            let array = s.split('')
+            /*console.log(array)*/
+            let x = []
+            for (let i = 0; i < s.length; i++)
+            {
+                if (array[i] == '(' || array[i] == '{' || array[i] == '[')
+                {
+                    x.push(array[i])
+                }
+                else if (array[i] == ')' || array[i] == '}' || array[i] == ']')
+                {
+                    /*console.log('found a closing bracket')*/
+                    let y = ''
+                    y = x.pop()
+                    if (array[i] == ')')
+                    {
+                        if (y == '(')
+                        {
+                        }
+                        else{
+                            return false
+                        }
+                    }
+                    else if (array[i] == ']')
+                    {
+                        /*console.log('we skipped over this ')*/
+                        if (y == '[')
+                        {
+                        }
+                        else{
+                            return false
+                        }
+                    }
+                    else if (array[i] == '}')
+                    {
+                        if (y == '{')
+                        {
+                        }
+                        else{
+                            return false
+                        }
+                    }
+                    /*console.log(y)*/
+                }
+            }
+            if (x.length != 0)
+            {
+                return false
+            }
+            return true
+        };
+        </code></pre></section>
+        <section><pre><code>
+        /**
+        * Definition for singly-linked list.
+        * function ListNode(val, next) {
+        *     this.val = (val===undefined ? 0 : val)
+        *     this.next = (next===undefined ? null : next)
+        * }
+        */
+        /**
+        * @param {ListNode} list1
+        * @param {ListNode} list2
+        * @return {ListNode}
+        */
+        var mergeTwoLists = function(list1, list2) {
+            
+            let final = new ListNode()
+            traverse = final
+            this1 = list1
+            this2 = list2
+
+            while (this1 != null || this2 != null)
+            {
+                if (this1 == null)
+                {
+                    traverse.next = this2
+                    traverse = traverse.next
+                    this2 = this2.next
+                }
+                else if (this2 == null)
+                {
+                    traverse.next = this1
+                    traverse = traverse.next
+                    this1 = this1.next
+                }
+                else if (this1.val <= this2.val)
+                {
+                    traverse.next = this1
+                    traverse = traverse.next
+                    this1 = this1.next
+                }
+                else
+                {
+                    traverse.next = this2
+                    traverse = traverse.next
+                    this2 = this2.next
+                }
+            }
+            return final.next
+        };
+        </code></pre></section>
+        This is problem #21 Merge Two Sorted Lists. It's fairly easy. This solution beats 100% on time, and is better than about 70% on space.
     </p>
 </body>
 </html>
